@@ -6,9 +6,9 @@ vep_grouping<-function(infile,types=c("hclof","hclof_noflag","missense","synonym
 ## mintools = the minimun number of bioinformatics tools to incldue in the grouping file
 
 
-
-
 header0<-fread(cmd=paste0("zcat ",infile," | head -n 500 | grep ^#Uploaded_variation "),header=F,data.table=F,sep="\t")
+
+basefilename<-basename(infile)
 
 if(any(c("hclof","hclof_noflag") %in% types)){
 
@@ -16,7 +16,7 @@ dat0<-fread(cmd=paste0("zcat ",infile," | egrep HC "),header=F,data.table=F,sep=
 names(dat0)<-header0[1,]
 
 #####
-#####
+##### select protein coding genes
 dat0<-subset(dat0,BIOTYPE=="protein_coding")
 
 #####
@@ -28,7 +28,7 @@ group<-score0
 names(group)[5]<-"group_id"
 group$pos<-as.numeric(group$pos)
 ##### save file
-outfile<-paste0(infile,".hclof.RData")
+outfile<-paste0(basefilename,".hclof.RData")
 save(group,file=outfile)
 
 }
@@ -40,7 +40,7 @@ group<-score0
 names(group)[5]<-"group_id"
 group$pos<-as.numeric(group$pos)
 ##### save file
-outfile<-paste0(infile,".hclof_noflag.RData")
+outfile<-paste0(basefilename,".hclof_noflag.RData")
 save(group,file=outfile)
 }
 }
@@ -59,7 +59,7 @@ group<-score0
 names(group)[5]<-"group_id"
 group$pos<-as.numeric(group$pos)
 ##### save file
-outfile<-paste0(infile,".missense.RData")
+outfile<-paste0(basefilename,".missense.RData")
 save(group,file=outfile)
 }
 
@@ -78,7 +78,7 @@ group<-score0
 names(group)[5]<-"group_id"
 group$pos<-as.numeric(group$pos)
 ##### save file
-outfile<-paste0(infile,".synonymous.RData")
+outfile<-paste0(basefilename,".synonymous.RData")
 save(group,file=outfile)
 }
 
