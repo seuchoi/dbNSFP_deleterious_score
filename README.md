@@ -22,8 +22,8 @@ vep -i input.vcf \
 --cache --dir_cache /home/jupyter/.vep/ \
 --no_stats --minimal --everything --allele_number --show_ref_allele \
 --canonical --tab --buffer_size 5000 \
- --force_overwrite --symbol \
- --dir_plugins /home/jupyter/.vep/Plugins \
+--force_overwrite --symbol \
+--dir_plugins /home/jupyter/.vep/Plugins \
 --fasta /home/jupyter/.vep/Homo_sapiens.GRCh38.dna.toplevel.fa.gz \
 --plugin LoF,loftee_path:/home/jupyter/.vep/Plugins,human_ancestor_fa:/home/jupyter/loftee_data/human_ancestor.fa.gz,gerp_bigwig:/home/jupyter/loftee_data/gerp_conservation_scores.homo_sapiens.GRCh38.bw,conservation_file:/home/jupyter/loftee_data/loftee.sql \
 --plugin dbNSFP,/home/jupyter/dbNSFP4.2a.gz,SIFT_pred,SIFT4G_pred,Polyphen2_HDIV_pred,Polyphen2_HVAR_pred,LRT_pred,MutationTaster_pred,MutationAssessor_pred,FATHMM_pred,PROVEAN_pred,VEST4_rankscore,MetaSVM_pred,MetaLR_pred,M-CAP_pred,REVEL_rankscore,MutPred_rankscore,MVP_rankscore,MPC_rankscore,PrimateAI_pred,DEOGEN2_pred,BayesDel_addAF_pred,BayesDel_noAF_pred,ClinPred_pred,LIST-S2_pred,Aloft_pred,Aloft_Confidence,CADD_phred,DANN_rankscore,fathmm-MKL_coding_pred,fathmm-XF_coding_pred,Eigen-phred_coding,Eigen-PC-phred_coding
