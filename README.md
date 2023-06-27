@@ -1,5 +1,5 @@
 # dbNSFP_deleterious_score
-Defining deleterious score using dbNSFP database
+Defining deleterious score using dbNSFP database. This approach was introducted in ```Jurgens, Choi, Morrill et al (2022). Analysis of rare genetic variation underlying cardiometabolic diseases and traits among 200,000 individuals in the UK Biobank. Nat Genet.``` https://www.nature.com/articles/s41588-021-01011-w.
 
 ## Software versions
 ```
