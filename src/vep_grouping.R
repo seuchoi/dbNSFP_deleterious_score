@@ -13,11 +13,20 @@ basefilename<-basename(infile)
 if(any(c("hclof","hclof_noflag") %in% types)){
 
 dat0<-fread(cmd=paste0("zcat ",infile," | egrep HC "),header=F,data.table=F,sep="\t")
+
 names(dat0)<-header0[1,]
 
 #####
 ##### select protein coding genes
+colns<-names(dat0)
+avail<-length(which(colns=="BIOTYPE"))
+
+if(!isZero(avail)){
 dat0<-subset(dat0,BIOTYPE=="protein_coding")
+}else{
+message(" BIOTYPE variable is not available. Unable to select protein coding genes.. ")
+}
+
 
 #####
 #####
@@ -51,8 +60,18 @@ dat0<-fread(cmd=paste0("zcat ",infile," | egrep missense "),header=F,data.table=
 names(dat0)<-header0[1,]
 
 #####
-#####
+##### select protein coding genes
+colns<-names(dat0)
+avail<-length(which(colns=="BIOTYPE"))
+
+if(!isZero(avail)){
 dat0<-subset(dat0,BIOTYPE=="protein_coding")
+}else{
+message(" BIOTYPE variable is not available. Unable to select protein coding genes.. ")
+}
+
+#####
+#####
 sub1<-dat0[grep("missense_variant",dat0$Consequence),]
 score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
 group<-score0
@@ -70,8 +89,18 @@ dat0<-fread(cmd=paste0("zcat ",infile," | egrep synonymous "),header=F,data.tabl
 names(dat0)<-header0[1,]
 
 #####
-#####
+##### select protein coding genes
+colns<-names(dat0)
+avail<-length(which(colns=="BIOTYPE"))
+
+if(!isZero(avail)){
 dat0<-subset(dat0,BIOTYPE=="protein_coding")
+}else{
+message(" BIOTYPE variable is not available. Unable to select protein coding genes.. ")
+}
+
+#####
+#####
 sub1<-dat0[grep("synonymous_variant",dat0$Consequence),]
 score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=0,in.transcript=TRUE)
 group<-score0
