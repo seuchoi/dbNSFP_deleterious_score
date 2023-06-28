@@ -32,7 +32,7 @@ message(" BIOTYPE variable is not available. Unable to select protein coding gen
 #####
 if("hclof" %in% types){
 sub1<-subset(dat0,LoF=="HC")
-score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
+score0<-try(delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE),silent=T)
 group<-score0
 names(group)[5]<-"group_id"
 ##### save file
@@ -43,7 +43,7 @@ save(group,file=outfile)
 
 if("hclof_noflag" %in% types){
 sub1<-subset(dat0,LoF=="HC" & LoF_flags=="-" )
-score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
+score0<-try(delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE),silent=T)
 group<-score0
 names(group)[5]<-"group_id"
 ##### save file
@@ -71,7 +71,7 @@ message(" BIOTYPE variable is not available. Unable to select protein coding gen
 #####
 #####
 sub1<-dat0[grep("missense_variant",dat0$Consequence),]
-score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
+score0<-try(delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE),silent=T)
 group<-score0
 names(group)[5]<-"group_id"
 ##### save file
@@ -99,7 +99,7 @@ message(" BIOTYPE variable is not available. Unable to select protein coding gen
 #####
 #####
 sub1<-dat0[grep("synonymous_variant",dat0$Consequence),]
-score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
+score0<-try(delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE),silent=T)
 group<-score0
 names(group)[5]<-"group_id"
 ##### save file
