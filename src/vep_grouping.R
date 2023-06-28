@@ -35,7 +35,6 @@ sub1<-subset(dat0,LoF=="HC")
 score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
 group<-score0
 names(group)[5]<-"group_id"
-group$pos<-as.numeric(group$pos)
 ##### save file
 outfile<-paste0(basefilename,".hclof.RData")
 save(group,file=outfile)
@@ -47,7 +46,6 @@ sub1<-subset(dat0,LoF=="HC" & LoF_flags=="-" )
 score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
 group<-score0
 names(group)[5]<-"group_id"
-group$pos<-as.numeric(group$pos)
 ##### save file
 outfile<-paste0(basefilename,".hclof_noflag.RData")
 save(group,file=outfile)
@@ -76,7 +74,6 @@ sub1<-dat0[grep("missense_variant",dat0$Consequence),]
 score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
 group<-score0
 names(group)[5]<-"group_id"
-group$pos<-as.numeric(group$pos)
 ##### save file
 outfile<-paste0(basefilename,".missense.RData")
 save(group,file=outfile)
@@ -102,10 +99,9 @@ message(" BIOTYPE variable is not available. Unable to select protein coding gen
 #####
 #####
 sub1<-dat0[grep("synonymous_variant",dat0$Consequence),]
-score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=0,in.transcript=TRUE)
+score0<-delscore_af_gnomad_data_dbnsfp(sub1,version=dbnsfp,delvar="Dprop",mintool=mintools,in.transcript=TRUE)
 group<-score0
 names(group)[5]<-"group_id"
-group$pos<-as.numeric(group$pos)
 ##### save file
 outfile<-paste0(basefilename,".synonymous.RData")
 save(group,file=outfile)
