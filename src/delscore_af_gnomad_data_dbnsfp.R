@@ -149,6 +149,8 @@ dat5<-dat3[,c("gvarID","Dscore","Dtools","Dprop","CANONICAL","gnomAD_POPMAX")]
 names(dat5)[4]<-delvar
 
 dat5<-separate(data=dat5,col="gvarID",into=c("chr","pos","ref","alt","geneID"))
+dat5$chr<-gsub("chr","",dat5$chr)
+dat5$pos<-as.numeric(dat5$pos)
 #write.table(dat5,outfile,col.names=T,row.names=F,quote=F,sep="\t")
 return(dat5)
 }
